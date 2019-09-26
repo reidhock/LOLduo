@@ -8,6 +8,12 @@
 <%@ include file="/WEB-INF/include/nav.jsp" %>
 <meta charset="UTF-8">
 <title>티어 게시판</title>
+<style type="text/css">
+#modalStyle {
+		max-width: 800px;
+		margin: 1.75rem auto
+	}
+</style>
 </head>
 <body>
 <div style=width:80%;margin:auto;>
@@ -42,64 +48,65 @@
 
 
 
-<div class="modal" id="myModal">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content" style="margin-top: 40%;">
-				<div class="modal-header">
-					<h5 class="modal-title">로그인</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
+<div class="modal" id="myModal2">
+	<div class="modal-dialog" role="document" id="modalStyle">
+		<div class="modal-content" style="margin-top: 40%;" >
+			<div class="modal-header">
+				<h5 class="modal-title">회원정보</h5>
 
-					<div class="form-group">
-						<label class="col-form-label" for="inputDefault">ID</label> <input
-							type="text" class="form-control" id="inputDefault">
-					</div>
-					<div class="form-group">
-						<label class="col-form-label" for="inputDefault">Password</label>
-						<input type="text" class="form-control" id="inputDefault">
-					</div>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">로그인</button>
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">취소</button>
+				<div class="form-group">
 				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" id="cancel2" data-dismiss="modal" onclick="cancel2();">닫기</button>
 			</div>
 		</div>
 	</div>
+</div>
+	
+
+	
 <script type="text/javascript">
-$(document).ready(function(){
-	function fnOpen(mem_num){
-		
-		var modal = document.getElementById('myModal');
+function cancel2(){
+	var modal3 = document.getElementById('myModal2');
+	modal3.style.display = "none";
+}
+function fnOpen(mem_num){
 
-		// Get the button that opens the modal
-		var btn = document.getElementById("myBtn");
+	$.ajax({
+	    url: "/lolduo/Refresh",
+	    type: "POST",
+	    cache: false,
+	    dataType: "json",
+	    data: {"num" : mem_num},
+	    success: function(data){
+	    	alert('성공');
+	    },
+	    
+	    error: function (request, status, error){        
+	        var msg = "ERROR : " + request.status + "<br>"
+	      msg +=  + "내용 : " + request.responseText + "<br>" + error;
+	      console.log(msg);              
+	    }
+	  });
+	
+	var modal2 = document.getElementById('myModal2');
+	modal2.style.display = "block";
 
-		// Get the <span> element that closes the modal
-		var span = document.getElementsByClassName("close")[0];
-
-		// When the user clicks on the button, open the modal 
-		btn.onclick = function() {
-			modal.style.display = "block";
-		}
-
-		// When the user clicks on <span> (x), close the modal
-		span.onclick = function() {
-			modal.style.display = "none";
-		}
-
-		// When the user clicks anywhere outside of the modal, close it
-		window.onclick = function(event) {
-			if (event.target == modal) {
-				modal.style.display = "none";
-			}
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+		if (event.target == modal2) {
+			modal2.style.display = "none";
 		}
 	}
+}
+
+$(document).ready(function(){
+	
 });
 </script>
 </body>
