@@ -24,7 +24,8 @@
         MEM_POSITION,
         MEM_TIME,
         MEM_JOINDATE,
-        MEM_TIER
+        MEM_TIER,
+        MEM_LOLID
 	) values (
         mem_num_seq.nextval,
         #{MEM_ID},
@@ -35,7 +36,8 @@
         #{MEM_POSITION},
         #{MEM_TIME},
         SYSDATE,
-        #{MEM_TIER}
+        	#{MEM_TIER},
+        	#{MEM_LOLID}
 	)
 	]]>
 	</insert>
