@@ -5,7 +5,7 @@
 <head>
 <%@ include file="/WEB-INF/include/header.jspf" %>
 <%@ include file="/WEB-INF/include/nav.jsp" %>
-<%@ include file="/WEB-INF/include-body.jspf" %>
+<%@ include file="/WEB-INF/include/include-body.jspf" %>
 <meta charset="UTF-8">
 <title>Join Form</title>
 
