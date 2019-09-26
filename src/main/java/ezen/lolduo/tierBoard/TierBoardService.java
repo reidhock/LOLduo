@@ -9,5 +9,9 @@ public interface TierBoardService {
 
 	List<Map<String, Object>> selectBoardList(Map<String, Object> commandMap) throws Exception;
 
+	Map<String, Object> selectId(Map<String, Object> map) throws Exception;
+
+	void updateNameTier(Map<String, Object> map) throws Exception;
+
 
 }

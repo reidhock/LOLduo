@@ -19,5 +19,14 @@ public class TierBoardServiceImpl implements TierBoardService{
 		// TODO Auto-generated method stub
 		return tierBoardDAO.selectBoardList(map);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectId(Map<String, Object> map) throws Exception{
+		return (Map<String, Object>) tierBoardDAO.selectOne(map);
+	}
+	
+	public void updateNameTier(Map<String, Object> map) throws Exception{
+		tierBoardDAO.updateNameTier(map);
+	}
 
 }

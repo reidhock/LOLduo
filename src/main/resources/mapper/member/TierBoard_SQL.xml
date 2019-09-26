@@ -18,4 +18,25 @@
 	]]>
 </select>
 
+<select id="selectId" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT
+			MEM_LOLID
+		FROM
+			MEMBER
+		WHERE MEM_NUM = #{MEM_NUM}
+	]]>
+</select>
+
+<update id="updateNameTier" parameterType="hashmap">
+	<![CDATA[
+		UPDATE MEMBER 
+		SET 
+			MEM_TIER = #{MEM_TIER},
+			MEM_SUMMONER = #{MEM_SUMMONER}
+		WHERE
+			MEM_NUM = #{MEM_NUM}
+	]]>
+</update>
+
 </mapper>
