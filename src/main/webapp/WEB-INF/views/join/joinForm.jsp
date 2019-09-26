@@ -5,7 +5,7 @@
 <head>
 <%@ include file="/WEB-INF/include/header.jspf" %>
 <%@ include file="/WEB-INF/include/nav.jsp" %>
-<%@ include file="/WEB-INF/include-body.jspf" %>
+<%@ include file="/WEB-INF/include/include-body.jspf" %>
 <meta charset="UTF-8">
 <title>Join Form</title>
 
@@ -40,16 +40,22 @@
 			e.preventDefault();
 			fn_idCheck();
 		});
+		
 		$("#btnJoin").unbind("click").click(function(e){
 			e.preventDefault();
 			fn_signUp();
 		});
+		
+		$("#summonerCheck").unbind("click").click(function(e){
+			e.preventDefault();
+			fn_summonerCheck();
+		});
 	});
 	
 	function fn_idCheck(){
-		var userId = $("#MEM_ID").val();
+		var userId = $("#userId").val();
 
-		if(userId != null && userId.length < 1){
+		if(userId == ""){
 			alert("아이디를 입력하세요");
 		}
 		else {
@@ -64,11 +70,11 @@
 				success:function(result){
 					if(result == 0)
 					{
-						$("#MEM_ID").attr("disabled",true);
+						$("#userId").attr("disabled",true);
 						alert("사용가능한 아이디입니다.");
 					}
 					else if(result == 1){
-						alert("이미존재하는 아이디입니다.");
+						alert("이미 존재하는 아이디입니다.");
 					}
 					else
 					{
@@ -78,31 +84,70 @@
 			});
 		}
 	}
+	
+	function fn_summonerCheck(){
+		var summoner = $("#MEM_SUMMONER").val();
 
+		if(summoner == ""){
+			alert("소환사명을 입력해주세요");
+		}
+		else {
+			$.ajax({
+				type:"POST",
+				url: "/lolduo/summonerCheck",
+				data: {"MEM_SUMMONER" :summoner},
+				dataType: "json",
+				error: function(error){
+					alert("서버가 미응답 시도해주세요");
+				},
+				success:function(result){
+					if(result == 0)
+					{
+						alert("존재하지 않는 소환사명입니다.");
+					}
+					else if(result == 1){
+						alert("이미 존재하는 소환사명입니다.");
+					}
+					else
+					{
+						$("#MEM_SUMMONER").attr("disabled",true);
+						alert("사용 가능한 소환사명입니다.");
+					}
+				}
+			});
+		}
+	}
 	
 	function fn_signUp(){
-		if($("#MEM_ID").val().length < 1){
-			alert("사용하실 id를적어주세요");
+		if($("#userId").val()==""){
+			alert("사용하실 id를 적어주세요");
+			return;
 		}
-		else if($("#MEM_PW").val().length < 1){
-			alert("사용하실 비밀번호를적어주세요");
+		else if(!$("#userId").attr("disabled")){
+			alert("아이디 중복체크를 해주세요");
+			return;
 		}
-		else if(!$("#MEM_ID").attr("disabled")){
-			alert("아이디 중복체크를해주세요");
+		else if($("#userPw").val().length < 1){
+			alert("사용하실 비밀번호를 적어주세요");
+			return;
 		}
+		else if(!$("#MEM_SUMMONER").attr("disabled")){
+			alert("소환사명 중복체크를 해주세요");
+			return;
+		}
+		
 		if(window.confirm("회원가입을 할꺼니?")){
 			var comSubmit = new ComSubmit("frm");
 			comSubmit.setUrl("/lolduo/signUpComplete");
-			comSubmit.addParam("MEM_ID", $("#MEM_ID").val());
-			comSubmit.addParam("MEM_PW", $("#MEM_PW").val());
+			comSubmit.addParam("MEM_ID", $("#userId").val());
+			comSubmit.addParam("MEM_PW", $("#userPw").val());
 			comSubmit.addParam("MEM_NAME", $("#MEM_NAME").val());
 			comSubmit.addParam("MEM_EMAIL", $("#MEM_EMAIL").val());
 			comSubmit.addParam("MEM_SUMMONER", $("#MEM_SUMMONER").val());
 			comSubmit.addParam("MEM_POSITION", $("#MEM_POSITION").val());
 			comSubmit.addParam("MEM_TIME", $("#MEM_TIME").val());
-			comSubmit.addParam("MEM_TIER", $("#MEM_TIER").val());
 			comSubmit.submit();
-			alert("회원가입이되셧습니다!");
+			alert("회원가입이 완료되었습니다!");
 			
 		}
 	}
@@ -122,13 +167,13 @@
 				<fieldset>
 					<div class="form-group has-success">
 						<label class="form-control-label" for="id">아이디:</label>
-						 <input	type="text" id="MEM_ID" name="userId" class="form-control1" placeholder="ID">
+						 <input	type="text" id="userId" name="userId" class="form-control1" placeholder="ID">
 						 <a href="#" id="check" class="btn btn-info">중복체크</a>
 					</div>
 
 					<div class="form-group">
 						<label class="col-form-label" for="password">비밀번호:</label> <input
-							type="password" id="MEM_PW" class="form-control1"
+							type="password" id="userPw" class="form-control1"
 							placeholder="******">
 					</div>
 					
@@ -145,9 +190,10 @@
 					</div>
 					
 					<div class="form-group">
-						<label class="col-form-label" for="summoner">소환사명:</label> <input
-							type="text" id="MEM_SUMMONER" class="form-control1"
-							placeholder="소환사명적으세요">
+						<label class="col-form-label" for="summoner">소환사명:</label> 
+						<input type="text" id="MEM_SUMMONER" class="form-control1"
+							placeholder="소환사명을 적어주세요">
+						<a href="#" id="summonerCheck" class="btn btn-info">중복체크</a>
 					</div>
 					
 					<div class="form-group">

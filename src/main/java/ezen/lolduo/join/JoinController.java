@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.merakianalytics.orianna.Orianna;
+import com.merakianalytics.orianna.types.common.Region;
+import com.merakianalytics.orianna.types.core.summoner.Summoner;
+
 import ezen.lolduo.common.CommandMap;
 
 @Controller
@@ -25,6 +29,12 @@ public class JoinController {
 	}
 	@RequestMapping(value="/signUpComplete") 
 	public ModelAndView signUp(CommandMap commandMap) throws Exception{
+		
+		//API 을 써라 
+		Orianna.setRiotAPIKey("RGAPI-2c756ac5-19b3-4a9e-99b8-1a484c1e89bd");
+        Orianna.setDefaultRegion(Region.KOREA);
+        Summoner summoner = Orianna.summonerNamed("협곡성").get();
+        
 		joinService.insertUserData(commandMap.getMap());
 		
 		ModelAndView mv = new ModelAndView("join/signUpComplete");
@@ -36,9 +46,37 @@ public class JoinController {
 	@ResponseBody
 	public int idCheck(CommandMap commandMap) throws Exception{
 		int checkResult = joinService.selectUserID(commandMap.getMap());
-		
 		return checkResult;
 	}
 
-	
+	@RequestMapping(value="summonerCheck")
+	@ResponseBody
+	public int summonerCheck(CommandMap commandMap) throws Exception{
+		Orianna.setRiotAPIKey("RGAPI-9a34ccda-ab35-48f5-8bef-eba5338d16ec");
+        Orianna.setDefaultRegion(Region.KOREA);
+        String summonerName = commandMap.get("MEM_SUMMONER").toString();
+        Summoner summoner = Orianna.summonerNamed(summonerName).get();
+        int checkResult;
+        if(summoner.exists()) {
+        	int check = joinService.selectSummonerName(commandMap.getMap());
+        		if(check==1) {
+        			checkResult = 1; //중복된 소환사명입니다. 
+        		}
+        		else {
+        			checkResult = 2; // 사용 가능한 소환사명입니다. 
+        		}
+        }
+        else {
+        	checkResult = 0; // 존재 하지 않는 소환사 명입니다. 
+        }
+		return checkResult;
+		
+	}
 }
+
+
+
+
+
+
+
