@@ -47,9 +47,9 @@
 	});
 	
 	function fn_idCheck(){
-		var userId = $("#MEM_ID").val();
+		var userId = $("#userId").val();
 
-		if(userId != null && userId.length < 1){
+		if(userId == ""){
 			alert("아이디를 입력하세요");
 		}
 		else {
@@ -64,7 +64,7 @@
 				success:function(result){
 					if(result == 0)
 					{
-						$("#MEM_ID").attr("disabled",true);
+						$("#userId").attr("disabled",true);
 						alert("사용가능한 아이디입니다.");
 					}
 					else if(result == 1){
@@ -81,20 +81,24 @@
 
 	
 	function fn_signUp(){
-		if($("#MEM_ID").val().length < 1){
+		if($("#userId").val()==""){
 			alert("사용하실 id를적어주세요");
+			return;
 		}
-		else if($("#MEM_PW").val().length < 1){
-			alert("사용하실 비밀번호를적어주세요");
-		}
-		else if(!$("#MEM_ID").attr("disabled")){
+		else if(!$("#userId").attr("disabled")){
 			alert("아이디 중복체크를해주세요");
+			return;
 		}
+		else if($("#userPw").val().length < 1){
+			alert("사용하실 비밀번호를적어주세요");
+			return;
+		}
+		
 		if(window.confirm("회원가입을 할꺼니?")){
 			var comSubmit = new ComSubmit("frm");
 			comSubmit.setUrl("/lolduo/signUpComplete");
-			comSubmit.addParam("MEM_ID", $("#MEM_ID").val());
-			comSubmit.addParam("MEM_PW", $("#MEM_PW").val());
+			comSubmit.addParam("MEM_ID", $("#userId").val());
+			comSubmit.addParam("MEM_PW", $("#userPw").val());
 			comSubmit.addParam("MEM_NAME", $("#MEM_NAME").val());
 			comSubmit.addParam("MEM_EMAIL", $("#MEM_EMAIL").val());
 			comSubmit.addParam("MEM_SUMMONER", $("#MEM_SUMMONER").val());
@@ -122,13 +126,13 @@
 				<fieldset>
 					<div class="form-group has-success">
 						<label class="form-control-label" for="id">아이디:</label>
-						 <input	type="text" id="MEM_ID" name="userId" class="form-control1" placeholder="ID">
+						 <input	type="text" id="userId" name="userId" class="form-control1" placeholder="ID">
 						 <a href="#" id="check" class="btn btn-info">중복체크</a>
 					</div>
 
 					<div class="form-group">
 						<label class="col-form-label" for="password">비밀번호:</label> <input
-							type="password" id="MEM_PW" class="form-control1"
+							type="password" id="userPw" class="form-control1"
 							placeholder="******">
 					</div>
 					
