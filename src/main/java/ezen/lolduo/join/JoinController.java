@@ -78,7 +78,6 @@ public class JoinController {
         	checkResult = 0; // 존재 하지 않는 소환사 명입니다. 
         }
 		return checkResult;
-		
 	}
 }
 
