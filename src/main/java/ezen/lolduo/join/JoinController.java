@@ -39,6 +39,4 @@ public class JoinController {
 		
 		return checkResult;
 	}
-
-	
 }
