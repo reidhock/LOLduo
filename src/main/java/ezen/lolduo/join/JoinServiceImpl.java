@@ -20,4 +20,10 @@ public class JoinServiceImpl implements JoinService {
 		joinDAO.insertUserData(map);
 	}
 
+	@Override
+	public int selectSummonerName(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return joinDAO.selectSummonerName(map);
+	}
+
 }
