@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="join">
+
+	<!-- 로그인, 회원정보수정 -->
+	
+	<select id="selectIdCheck" parameterType="hashMap" resultType="Integer">
+	<![CDATA[
+    SELECT count(*) 
+    FROM member 
+    WHERE mem_id=#{MEM_ID}
+	]]>
+	</select>
+	
+	<insert id="insertUserData" parameterType="hashmap"> 
+	<![CDATA[
+	insert into member(
+        MEM_NUM,
+        MEM_ID,
+        MEM_PW,
+        MEM_NAME,
+        MEM_EMAIL,
+        MEM_SUMMONER,
+        MEM_POSITION,
+        MEM_TIME,
+        MEM_JOINDATE,
+        MEM_TIER
+	) values (
+        mem_num_seq.nextval,
+        #{MEM_ID},
+        #{MEM_PW},
+        #{MEM_NAME},
+        #{MEM_EMAIL},
+        #{MEM_SUMMONER},
+        #{MEM_POSITION},
+        #{MEM_TIME},
+        SYSDATE,
+        #{MEM_TIER}
+	)
+	]]>
+	</insert>
+	
+	<select id="selectUserID" parameterType="hashMap" resultType="Integer">
+	<![CDATA[
+    SELECT count(MEM_ID) 
+    FROM MEMBER 
+    WHERE mem_id=#{MEM_ID}
+	]]>
+	</select>
+	
+
+	<update id="updateVerify" parameterType="hashmap"> 
+	<![CDATA[
+    update member set mem_verify='Y' where mem_email=#{MEM_EMAIL}
+	]]>
+	</update>
+
+</mapper>

@@ -1,0 +1,16 @@
+<!-- 모든 파일에 반드시 이걸 import 하십시오. css 적용부터 javascript 까지 -->
+
+<%@ page pageEncoding="utf-8"%>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>롤해듀오</title>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/bootstrap/bootstrap.min.css'/>"/>
+
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="/lolduo/resources/js/common.js"></script>
