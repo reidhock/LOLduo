@@ -7,4 +7,6 @@ public interface JoinService {
 	
 	int selectUserID(Map<String, Object> map) throws Exception;
 
+	int selectSummonerName(Map<String, Object> map) throws Exception;
+
 }

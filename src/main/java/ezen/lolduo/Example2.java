@@ -12,7 +12,7 @@ import com.merakianalytics.orianna.types.core.summoner.Summoners;
 import java.util.List;
 public class Example2 {
 	 public static void main(final String[] args) {
-//	        final Summoner summoner = Summoner.named("���").withRegion(Region.KOREA).get();
+//	        final Summoner summoner = Summoner.named("협곡성").withRegion(Region.KOREA).get();
 	        Orianna.setRiotAPIKey("RGAPI-2c756ac5-19b3-4a9e-99b8-1a484c1e89bd");
 	        Orianna.setDefaultRegion(Region.KOREA);
 	        Summoner summoner = Orianna.summonerNamed("협곡성").get();

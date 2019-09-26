@@ -5,7 +5,7 @@
 <head>
 <%@ include file="/WEB-INF/include/header.jspf" %>
 <%@ include file="/WEB-INF/include/nav.jsp" %>
-<%@ include file="/WEB-INF/include-body.jspf" %>
+<%@ include file="/WEB-INF/include/include-body.jspf" %>
 <meta charset="UTF-8">
 <title>Join Form</title>
 
@@ -40,9 +40,15 @@
 			e.preventDefault();
 			fn_idCheck();
 		});
+		
 		$("#btnJoin").unbind("click").click(function(e){
 			e.preventDefault();
 			fn_signUp();
+		});
+		
+		$("#summonerCheck").unbind("click").click(function(e){
+			e.preventDefault();
+			fn_summonerCheck();
 		});
 	});
 	
@@ -68,7 +74,7 @@
 						alert("사용가능한 아이디입니다.");
 					}
 					else if(result == 1){
-						alert("이미존재하는 아이디입니다.");
+						alert("이미 존재하는 아이디입니다.");
 					}
 					else
 					{
@@ -78,19 +84,55 @@
 			});
 		}
 	}
+	
+	function fn_summonerCheck(){
+		var summoner = $("#MEM_SUMMONER").val();
 
+		if(summoner == ""){
+			alert("소환사명을 입력해주세요");
+		}
+		else {
+			$.ajax({
+				type:"POST",
+				url: "/lolduo/summonerCheck",
+				data: {"MEM_SUMMONER" :summoner},
+				dataType: "json",
+				error: function(error){
+					alert("서버가 미응답 시도해주세요");
+				},
+				success:function(result){
+					if(result == 0)
+					{
+						alert("존재하지 않는 소환사명입니다.");
+					}
+					else if(result == 1){
+						alert("이미 존재하는 소환사명입니다.");
+					}
+					else
+					{
+						$("#MEM_SUMMONER").attr("disabled",true);
+						alert("사용 가능한 소환사명입니다.");
+					}
+				}
+			});
+		}
+	}
 	
 	function fn_signUp(){
 		if($("#userId").val()==""){
-			alert("사용하실 id를적어주세요");
+			alert("사용하실 id를 적어주세요");
 			return;
 		}
 		else if(!$("#userId").attr("disabled")){
-			alert("아이디 중복체크를해주세요");
+			alert("아이디 중복체크를 해주세요");
 			return;
 		}
 		else if($("#userPw").val().length < 1){
-			alert("사용하실 비밀번호를적어주세요");
+			alert("사용하실 비밀번호를 적어주세요");
+			return;
+		}
+		else if(!$("#MEM_SUMMONER").attr("disabled")){
+			alert("소환사명 중복체크를 해주세요");
 			return;
 		}
 		
@@ -104,9 +146,8 @@
 			comSubmit.addParam("MEM_SUMMONER", $("#MEM_SUMMONER").val());
 			comSubmit.addParam("MEM_POSITION", $("#MEM_POSITION").val());
 			comSubmit.addParam("MEM_TIME", $("#MEM_TIME").val());
-			comSubmit.addParam("MEM_TIER", $("#MEM_TIER").val());
 			comSubmit.submit();
-			alert("회원가입이되셧습니다!");
+			alert("회원가입이 완료되었습니다!");
 			
 		}
 	}
@@ -149,9 +190,10 @@
 					</div>
 					
 					<div class="form-group">
-						<label class="col-form-label" for="summoner">소환사명:</label> <input
-							type="text" id="MEM_SUMMONER" class="form-control1"
-							placeholder="소환사명적으세요">
+						<label class="col-form-label" for="summoner">소환사명:</label> 
+						<input type="text" id="MEM_SUMMONER" class="form-control1"
+							placeholder="소환사명을 적어주세요">
+						<a href="#" id="summonerCheck" class="btn btn-info">중복체크</a>
 					</div>
 					
 					<div class="form-group">

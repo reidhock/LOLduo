@@ -48,7 +48,13 @@
 	]]>
 	</select>
 	
-
+	<select id="selectSummonerName" parameterType="hashMap" resultType="Integer">
+	<![CDATA[
+    	SELECT count(MEM_SUMMONER) 
+    	FROM MEMBER 
+    	WHERE mem_id=#{MEM_SUMMONER}
+	]]>
+	</select>
 	<update id="updateVerify" parameterType="hashmap"> 
 	<![CDATA[
     update member set mem_verify='Y' where mem_email=#{MEM_EMAIL}
