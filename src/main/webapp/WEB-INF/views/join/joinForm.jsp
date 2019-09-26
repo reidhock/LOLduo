@@ -208,12 +208,6 @@
 							placeholder="접속하는시간대 입력">
 					</div>
 					
-					<div class="form-group">
-						<label class="col-form-label" for="tier">티어:</label> <input
-							type="text" id="MEM_TIER" class="form-control1"
-							placeholder="본인의 티어를 적으세요">
-					</div>
-					
 					<a href="#"  id="btnJoin" class="btn btn-primary">회원가입</a>
 					
 				</fieldset>

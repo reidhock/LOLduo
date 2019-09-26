@@ -7,6 +7,7 @@ import com.merakianalytics.orianna.types.core.league.League;
 import com.merakianalytics.orianna.types.core.league.LeagueEntry;
 import com.merakianalytics.orianna.types.core.league.LeaguePositions;
 import com.merakianalytics.orianna.types.core.summoner.Summoner;
+import com.merakianalytics.orianna.types.core.summoner.Summoner.Builder;
 import com.merakianalytics.orianna.types.core.summoner.Summoners;
 
 import java.util.List;
@@ -17,6 +18,8 @@ public class Example2 {
 	        Orianna.setRiotAPIKey("RGAPI-2c756ac5-19b3-4a9e-99b8-1a484c1e89bd");
 
 	        Orianna.setDefaultRegion(Region.KOREA);
+	        Builder summoner2 = Orianna.summonerWithId("ZfozZmWooen0TZiirRX5jHxrrKN3vsOBoc4igl7griC1JQ");
+	        Summoner summoner3  = summoner2.get();
 	        Summoner summoner = Orianna.summonerNamed("협곡성").get();
 	        System.out.println("Name: " + summoner.getName());
 	        System.out.println("ID: " + summoner.getId());
