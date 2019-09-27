@@ -6,6 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <script type="text/javascript">
 
+
 var idChk = "<%=(String)session.getAttribute("MEM_ID")%>";
 sessionStorage.setItem("MEM_ID",idChk);
 console.log(idChk);
@@ -18,21 +19,43 @@ $(document).ready(function(){
 		$(".logout").hide();
 	}
 });
+
 //로그인에서 로그인 눌렀을 때 
-function login(){
-	var comSubmit = new ComSubmit("frm");
-	var id=$("#MEM_ID")[0].value;
-	var pw=$("#MEM_PW")[0].value;
+$(document).ready(function(){
+	$("#login").on("click",function(e){
+		e.preventDefault();
+		fn_login();
+	});
+});
+function login(){	
+	var id = $("#MEM_ID").val();
+	var pw = $("#MEM_PW").val();
 	
-	if(id==null||id==''){
-		alert("아이디를 입력하세요.");
-		return false;
-	}
-	if(pw==null||pw==''){
-		alert("비밀번호를 입력하세요.");
-		return false;
+	if(id==""){
+		alert("아이디를 입력하세요");
+	} else if(id!="" || pw==""){
+		alert("비밀번호를 입력하세요");
+	} else{
+		$.ajax({
+			type:"POST",
+			url:"/lolduo/login",
+			data:{"MEM_ID":id,"MEM_PW":pw},
+			dataType: "json",
+			error: function(error){
+				alert("서버가 응답하지 않습니다. 다시 시도해주세요");
+			},
+			success: function(result){
+				if(result==0){
+					alert("아이디 또는 비밀번호를 확인해주세요");
+				}
+				else(result==1){
+					location.href="<c:url=/loginSuccess?MEM_ID="+id+"/>";
+				}
+			}
+		});
 	}
 };
+
 
 function openMenu(){
 	var e = document.getElementById("mymenu");
@@ -157,7 +180,8 @@ $(document).ready(function() {
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<div class="modal-body">
+			<form id="frm">
+			<div class="modal-body">	
 				<div class="form-group">
 					<label class="col-form-label" for="inputDefault">ID</label> 
 					<input type="text" class="form-control" id="MEM_ID" name="MEM_ID" placeholder="아이디를 입력하세요">
@@ -166,12 +190,13 @@ $(document).ready(function() {
 					<label class="col-form-label" for="inputDefault">Password</label>
 					<input type="password" class="form-control" id="MEM_PW" name="MEM_PW" placeholder="비밀번호를 입력하세요"	 onkeypress="if( event.keyCode == 13 ){login();}">
 					<!-- keycode==13 은 enter를 의미해서 enter누르면 로그인 버튼 누르는거랑 똑같이 동작한다는 내용-->
-				</div>
+				</div>	
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-primary" id="login" onclick="login();">로그인</button>
 				<button type="button" class="btn btn-secondary" id="cancel" data-dismiss="modal" onclick="cancel();">취소</button>
 			</div>
+			</form>
 		</div>
 	</div>
 </div>
