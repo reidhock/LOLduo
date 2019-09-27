@@ -75,4 +75,13 @@ public class LoginController {
 		
 		return mv;
 	}
+	
+	@RequestMapping(value="/logout")
+	public ModelAndView logout(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("main/main");
+		HttpSession session = request.getSession(false);
+		if (session != null)
+			session.invalidate();
+		return mv;
+	}
 }
