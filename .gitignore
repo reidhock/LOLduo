@@ -7,3 +7,5 @@ Target/*
 .project
 
 .springBeans
+
+Context-datasource.xml

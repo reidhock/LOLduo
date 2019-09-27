@@ -152,12 +152,12 @@ $(document).ready(function() {
 				</li>
 			</ul>
 			</div>
-			<ul class="nav nav-pills mymenu login" id="mymenu" style="display:block;">
+			<ul class="nav nav-pills login" style="display:none;">
   				<li class="nav-item dropdown">
-    				<a class="nav-link dropdown-toggle mymenu" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" onclick="openMenu();"><%=(String)session.getAttribute("MEM_ID")%>님</a>
-    				<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+    				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" onclick="openMenu();"><%=(String)session.getAttribute("MEM_ID")%>님</a>
+    				<div class="dropdown-menu mymenu" id="mymenu" x-placement="bottom-start" style="display:none;position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
       					<a class="dropdown-item" href="#">마이페이지</a>
-      					<a class="dropdown-item" href="#">로그아웃</a>
+      					<a class="dropdown-item" href="/lolduo/logout">로그아웃</a>
 					</div>
   				</li>
 			</ul>
