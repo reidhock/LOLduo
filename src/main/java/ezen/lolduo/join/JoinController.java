@@ -44,7 +44,8 @@ public class JoinController {
         String tier = (summonerEntry.getTier().toString())+"_"+(summonerEntry.getDivision().toString());
         commandMap.put("MEM_LOLID", lolId);
         commandMap.put("MEM_TIER", tier);
-		joinService.insertUserData(commandMap.getMap());
+		
+        joinService.insertUserData(commandMap.getMap());
 		ModelAndView mv = new ModelAndView("join/signUpComplete");
 		mv.addObject("msg","가입완료");
 		return mv;
@@ -68,7 +69,7 @@ public class JoinController {
         if(summoner.exists()) {
         	int check = joinService.selectSummonerName(commandMap.getMap());
         		if(check==1) {
-        			checkResult = 1; //중복된 소환사명입니다. 
+        			checkResult = 1; // 중복된 소환사명입니다. 
         		}
         		else {
         			checkResult = 2; // 사용 가능한 소환사명입니다. 
