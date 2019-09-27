@@ -1,4 +1,5 @@
 package ezen.lolduo.login;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -28,10 +29,19 @@ public class LoginController {
 		return mv;
 	}
 	@RequestMapping(value="/login")
-	public ModelAndView login(CommandMap commandMap,HttpServletRequest request)throws Exception{
-		ModelAndView mv=new ModelAndView("redirect:/main/main");
-		Map<String,Object> map=loginService.loginChk(commandMap.getMap());
-		mv.addObject("map",map);
+	@ResponseBody
+	public int login(CommandMap commandMap,HttpServletRequest request)throws Exception{
+		Map<String,Object> map = new HashMap<String, Object>();
+		HttpSession session = request.getSession();
+		int chk = loginService.loginChk(commandMap.getMap());
+		return chk;
+	}
+	
+	@RequestMapping(value="/loginSuccess")
+	public ModelAndView loginSuccess(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("main/main");
+		HttpSession session = request.getSession();
+		session.setAttribute("MEM_ID", commandMap.get("MEM_ID")); 
 		return mv;
 	}
 }

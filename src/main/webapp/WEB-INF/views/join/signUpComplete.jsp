@@ -5,7 +5,7 @@
 <head>
 <%@ include file="/WEB-INF/include/header.jspf" %>
 <%@ include file="/WEB-INF/include/nav.jsp" %>
-<title>Insert title here</title>
+<title>가입 완료</title>
 </head>
 <body>
 <a href="/lolduo/" id = "btnNext" class="btnBigBgBlue2 w227">메인으로 가기</a>

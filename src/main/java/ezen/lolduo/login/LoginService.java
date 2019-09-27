@@ -4,7 +4,6 @@ import java.util.Map;
 
 public interface LoginService {
 
-	Map<String, Object> loginChk(Map<String, Object> map) throws Exception;
-
+	int loginChk(Map<String, Object> map) throws Exception;
 
 }

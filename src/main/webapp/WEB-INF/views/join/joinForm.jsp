@@ -136,7 +136,7 @@
 			return;
 		}
 		
-		if(window.confirm("회원가입을 할꺼니?")){
+		if(window.confirm("회원가입을 하시겠습니까?")){
 			var comSubmit = new ComSubmit("frm");
 			comSubmit.setUrl("/lolduo/signUpComplete");
 			comSubmit.addParam("MEM_ID", $("#userId").val());
