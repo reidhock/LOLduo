@@ -183,7 +183,7 @@ $(document).ready(function() {
 				</div>
 				<div class="form-group">
 					<label class="col-form-label" for="inputDefault">Password</label>
-					<input type="password" class="form-control" id="MEM_PW" name="MEM_PW" placeholder="비밀번호를 입력하세요"	 onkeypress="if( event.keyCode == 13 ){login();}">
+					<input type="password" class="form-control" id="MEM_PW" name="MEM_PW" placeholder="비밀번호를 입력하세요"	 onkeypress="if( event.keyCode == 13 ){fn_login();}">
 					<!-- keycode==13 은 enter를 의미해서 enter누르면 로그인 버튼 누르는거랑 똑같이 동작한다는 내용-->
 				</div>	
 			</div>
