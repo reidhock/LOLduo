@@ -3,7 +3,6 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/header.jspf" %>
-
 <%@ include file="/WEB-INF/include/nav.jsp"%>
 <head>
    <title>main</title>

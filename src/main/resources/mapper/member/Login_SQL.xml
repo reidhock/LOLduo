@@ -9,8 +9,21 @@
     FROM 
     	member 
     WHERE 
-    	mem_id=#{MEM_ID},
+    	mem_id=#{MEM_ID}
+    	AND
     	mem_pw=#{MEM_PW}
 	]]>
 	</select>
+	
+	<select id="selectId" parameterType="hashMap" resultType="hashMap">
+	<![CDATA[
+    SELECT 
+    	MEM_LOLID, MEM_NUM
+    FROM 
+    	member 
+    WHERE 
+    	mem_id=#{MEM_ID}
+	]]>
+	</select>
+	
 </mapper>

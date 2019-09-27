@@ -20,26 +20,18 @@ $(document).ready(function(){
 	}
 });
 
-//로그인에서 로그인 눌렀을 때 
-$(document).ready(function(){
-	$("#login").on("click",function(e){
-		e.preventDefault();
-		fn_login();
-	});
-});
-function login(){	
+function fn_login(){	
 	var id = $("#MEM_ID").val();
 	var pw = $("#MEM_PW").val();
-	
 	if(id==""){
 		alert("아이디를 입력하세요");
-	} else if(id!="" || pw==""){
+	} else if(id!="" && pw==""){
 		alert("비밀번호를 입력하세요");
 	} else{
 		$.ajax({
 			type:"POST",
 			url:"/lolduo/login",
-			data:{"MEM_ID":id,"MEM_PW":pw},
+			data:{"MEM_ID" :id,"MEM_PW" :pw},
 			dataType: "json",
 			error: function(error){
 				alert("서버가 응답하지 않습니다. 다시 시도해주세요");
@@ -48,8 +40,8 @@ function login(){
 				if(result==0){
 					alert("아이디 또는 비밀번호를 확인해주세요");
 				}
-				else(result==1){
-					location.href="<c:url=/loginSuccess?MEM_ID="+id+"/>";
+				else if(result==1){
+					location.href="/lolduo/";
 				}
 			}
 		});
@@ -160,16 +152,20 @@ $(document).ready(function() {
 				</li>
 			</ul>
 			</div>
-			<div>
-			<ul class="navbar-nav mr-auto login">
-				<li class="nav-item active">
-					<a class="nav-link" href="#">마이페이지</a>
-				</li>
+			<ul class="nav nav-pills mymenu login" id="mymenu" style="display:block;">
+  				<li class="nav-item dropdown">
+    				<a class="nav-link dropdown-toggle mymenu" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" onclick="openMenu();"><%=(String)session.getAttribute("MEM_ID")%>님</a>
+    				<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+      					<a class="dropdown-item" href="#">마이페이지</a>
+      					<a class="dropdown-item" href="#">로그아웃</a>
+					</div>
+  				</li>
 			</ul>
-			</div>
 		</div>
 	</nav>
 </div>
+
+
 <!-- 로그인 -->
 <div class="modal" id="myModal">
 	<div class="modal-dialog" role="document">
@@ -180,7 +176,6 @@ $(document).ready(function() {
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form id="frm">
 			<div class="modal-body">	
 				<div class="form-group">
 					<label class="col-form-label" for="inputDefault">ID</label> 
@@ -193,10 +188,9 @@ $(document).ready(function() {
 				</div>	
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" id="login" onclick="login();">로그인</button>
+				<button type="button" class="btn btn-primary" id="login" onclick="fn_login();">로그인</button>
 				<button type="button" class="btn btn-secondary" id="cancel" data-dismiss="modal" onclick="cancel();">취소</button>
 			</div>
-			</form>
 		</div>
 	</div>
 </div>

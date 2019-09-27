@@ -33,7 +33,7 @@ public class JoinController {
 	public ModelAndView signUp(CommandMap commandMap) throws Exception{
 		
 		//API을 써서 MEM_TIER, MEM_LOLID를 넣어라. 
-		Orianna.setRiotAPIKey("RGAPI-9a34ccda-ab35-48f5-8bef-eba5338d16ec");
+		Orianna.setRiotAPIKey("RGAPI-09562dcb-34a8-44bb-bdf2-eff6f68f6696");
         Orianna.setDefaultRegion(Region.KOREA);
         String summonerName = commandMap.get("MEM_SUMMONER").toString();
         	System.out.println(summonerName);
@@ -61,7 +61,7 @@ public class JoinController {
 	@RequestMapping(value="summonerCheck") // 실제 소환사명이 롤에 존재하는 지와 사이트에 존재하는 지를 체크. 
 	@ResponseBody
 	public int summonerCheck(CommandMap commandMap) throws Exception{
-		Orianna.setRiotAPIKey("RGAPI-9a34ccda-ab35-48f5-8bef-eba5338d16ec");
+		Orianna.setRiotAPIKey("RGAPI-09562dcb-34a8-44bb-bdf2-eff6f68f6696");
         Orianna.setDefaultRegion(Region.KOREA);
         String summonerName = commandMap.get("MEM_SUMMONER").toString();
         Summoner summoner = Orianna.summonerNamed(summonerName).get();
