@@ -4,12 +4,20 @@
 
 <select id="messageList" resultType="hashMap" parameterType="hashMap">
    <![CDATA[
-   SELECT 
-   		* 
-   FROM
-   		MESSAGE
+   SELECT * FROM(
+   		SELECT
+   			ROW_NUMBER() OVER(ORER BY MESSAGE_NUM DESC) RNUM,
+   			MESSAGE_NUM,
+   			MESSAGE_CONTENT,
+   			MESSAGE_SENDER,
+   			MESSGAE_RECEIVER,
+   			SEND_DATE   			 
+   		FROM
+   			MESSAGE
+   		)
    WHERE
-   		RECEIVER=${MEM_ID};
+   		MESSAGE_RECEIVER=#{MEM_ID};
    ]]>
 </select>
+
 </mapper>
