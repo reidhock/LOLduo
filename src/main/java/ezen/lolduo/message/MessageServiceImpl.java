@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class MessageServiceImpl implements MessageService {
 	Logger log = Logger.getLogger(this.getClass());
 	
-	@Resource(name="messageDAKO")
+	@Resource(name="messageDAO")
 	private MessageDAO messageDAO;
 	
 	@Override

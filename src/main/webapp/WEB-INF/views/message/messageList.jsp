@@ -6,7 +6,7 @@
 <%@ include file="/WEB-INF/include/header.jspf" %>
 <%@ include file="/WEB-INF/include/nav.jsp"%>
 <meta charset="utf-8">
-<title>Insert title here</title>
+<title>메세지함</title>
 </head>
 <body>
 메세지함입니다.
