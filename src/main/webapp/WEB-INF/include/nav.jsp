@@ -56,6 +56,12 @@ function openMenu(){
 	else
 		$(".mymenu").show();
 };
+
+function openMenu2(){
+	$(".collapse").toggle();
+};
+
+
 function goMyPage(){
 	path = "<%=request.getContextPath()%>";
 	str = "<form id='id' action='"+path+"/myPage/messageList' method='post'>"
@@ -118,10 +124,10 @@ $(document).ready(function() {
 	<div class="img" style=cursor:pointer;>
 		<img src="<%=request.getContextPath()%>/images/lolduologo.png" onclick="location.href='<%=request.getContextPath()%>/'" width="100px">
 	</div>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" onclick="openMenu2();">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse" id="navbarColor01">
+		<div class="collapse navbar-collapse" id="navbarColor01" style=display:none;>
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
 					<a class="nav-link" href="/lolduo/tierBoard">티어 게시판<span class="sr-only">(current)</span></a>
@@ -142,6 +148,7 @@ $(document).ready(function() {
 				<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>&nbsp;&nbsp;
 			</form>
 			</div>
+		</div>
 			<div style=text-align:right;display:inline;>
 			<ul class="navbar-nav mr-auto logout">
 				<li class="nav-item active">
@@ -162,7 +169,7 @@ $(document).ready(function() {
 					</div>
   				</li>
 			</ul>
-		</div>
+		
 	</nav>
 </div>
 
