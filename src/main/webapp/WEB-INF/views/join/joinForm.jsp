@@ -11,7 +11,7 @@
 
 <style>
 .form-control1 {
-	width: 20%;
+	width: 100%;
 	height: calc(1.5em + 0.75rem + 2px);
 	padding: 0.375rem 0.75rem;
 	font-size: 0.9375rem;
@@ -70,11 +70,16 @@
 				success:function(result){
 					if(result == 0)
 					{
-						$("#userId").attr("disabled",true);
-						alert("사용가능한 아이디입니다.");
+						$("#userId").attr("class","form-control is-valid");
+						$("#userId").css("width", "80%");
+						$("#userId").css("display", "inline-block");
+						$('#chkMsg').html("사용 가능한 아이디입니다.");
+						$('#chkMsg').attr("class","valid-feedback");
 					}
 					else if(result == 1){
-						alert("이미 존재하는 아이디입니다.");
+						$("#userId").attr("class","form-control is-invalid");
+						$('#chkMsg').html("이미 존재하는 아이디입니다.");
+						$('#chkMsg').attr("class","invalid-feedback");
 					}
 					else
 					{
@@ -123,8 +128,8 @@
 			alert("사용하실 id를 적어주세요");
 			return;
 		}
-		else if(!$("#userId").attr("disabled")){
-			alert("아이디 중복체크를 해주세요");
+		else if($("#chkMsg").html()!="사용 가능한 아이디입니다."){
+			alert("아이디 중복확인을 해주세요.");
 			return;
 		}
 		else if($("#userPw").val().length < 1){
@@ -156,63 +161,58 @@
 
 </head>
 <body>
-
-	<div>
-		<h1>
-		Logo
-		</h1>
-	</div>
-	<div align=center>
+	<div align=center style=width:35%;margin:auto;>
 			<form id="frm">
 				<fieldset>
-					<div class="form-group has-success">
-						<label class="form-control-label" for="id">아이디:</label>
-						 <input	type="text" id="userId" name="userId" class="form-control1" placeholder="ID">
-						 <a href="#" id="check" class="btn btn-info">중복체크</a>
+					<div class="form-group">
+						<!-- <label class="form-control-label" for="id">아이디 :</label> -->
+						 <input	type="text" id="userId" name="userId" class="form-control1" placeholder="ID" style=width:80%;>
+						 <a href="#" id="check" class="btn btn-info" style="margin-bottom:4px;width:19%;">중복체크</a>
+						 <div id="chkMsg" style="display:inline-block;"></div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-form-label" for="password">비밀번호:</label> <input
-							type="password" id="userPw" class="form-control1"
-							placeholder="******">
+						<!-- <label class="col-form-label" for="password">비밀번호 :</label> --> 
+						<input type="password" id="userPw" class="form-control1" placeholder="비밀번호">
 					</div>
-					
 					<div class="form-group">
-						<label class="col-form-label" for="name">이름:</label> <input
-							type="text" id="MEM_NAME" class="form-control1"
-							placeholder="염따">
+						<!-- <label class="col-form-label" for="password">비밀번호 확인 :</label>  -->
+						<input type="password" id="userPw" class="form-control1" placeholder="비밀번호 확인">
+					</div>
+					<div class="form-group">
+						<!-- <label class="col-form-label" for="name">이름 :</label> -->
+						 <input type="text" id="MEM_NAME" class="form-control1" placeholder="염따">
 					</div>
 
 					<div class="form-group">
-						<label class="col-form-label" for="email">이메일:</label> <input
-							type="text" id="MEM_EMAIL" class="form-control1"
-							placeholder="asds@naver.com">
+						<!-- <label class="col-form-label" for="email">이메일:</label>  -->
+						<input type="text" id="MEM_EMAIL" class="form-control1" placeholder="asds@naver.com">
 					</div>
 					
 					<div class="form-group">
-						<label class="col-form-label" for="summoner">소환사명:</label> 
+						<!-- <label class="col-form-label" for="summoner">소환사명:</label>  -->
 						<input type="text" id="MEM_SUMMONER" class="form-control1"
 							placeholder="소환사명을 적어주세요">
 						<a href="#" id="summonerCheck" class="btn btn-info">중복체크</a>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-form-label" for="position">포지션:</label> <input
-							type="text" id="MEM_POSITION" class="form-control1"
+						<!-- <label class="col-form-label" for="position">포지션:</label> --> 
+						<input type="text" id="MEM_POSITION" class="form-control1"
 							placeholder="선호 포지션">
 					</div>
 					
 					<div class="form-group">
-						<label class="col-form-label" for="time">접속시간:</label> <input
-							type="text" id="MEM_TIME" class="form-control1"
-							placeholder="접속하는시간대 입력">
-					</div>
+						<!-- <label class="col-form-label" for="time">접속시간:</label>  -->
+						<input type="text" id="MEM_TIME" class="form-control1"
+						placeholder="접속하는시간대 입력">
+				</div>
 					
 					<a href="#"  id="btnJoin" class="btn btn-primary">회원가입</a>
 					
 				</fieldset>
 			</form>
-			</div>
+	</div>
 		
 
 </body>
