@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -7,7 +7,10 @@
 <%@ include file="/WEB-INF/include/header.jspf" %>
 <%@ include file="/WEB-INF/include/nav.jsp"%>
 <meta charset="utf-8">
-<title>메세지함</title>
+<script type="text/javascript">
+	var idChk = "<%=(String)session.getAttribute("MEM_ID")%>";
+	sessionStorage.setItem("MEM_ID",idChk);
+</script>
 <style type="text/css">
 #modalStyle {
 		max-width: 800px;
