@@ -7,7 +7,7 @@ import ezen.lolduo.common.CommandMap;
 
 public interface TierBoardService {
 
-	List<Map<String, Object>> selectBoardList(Map<String, Object> commandMap) throws Exception;
+	List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception;
 
 	Map<String, Object> selectId(Map<String, Object> map) throws Exception;
 

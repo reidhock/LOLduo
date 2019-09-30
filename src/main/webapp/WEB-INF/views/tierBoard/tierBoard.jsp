@@ -37,7 +37,7 @@
 	<c:forEach items="${list}" var="list">
 		<tr class="table-light" onclick="fnOpen(${list.MEM_NUM})">
 			<th scope="row">${list.MEM_SUMMONER}</th>
-			<td>${list.MEM_TIER}</td>
+			<td class="MEM_TIER" name="MEM_TIER">${list.MEM_TIER}</td>
 			<td>${list.MEM_TIME}</td>
 			<td>${list.MEM_POSITION}</td>
 		</tr>
