@@ -19,7 +19,7 @@ public class GetMatches {
 	public static void main(final String[] args) {
         // Notice how this object never requires a call to the summoner endpoint because we provide all the needed data!
 //        final Summoner summoner = Summoner.named("협곡성").withRegion(Region.KOREA).get();
-		Orianna.setRiotAPIKey("RGAPI-a16b07af-51cc-4b35-9518-711a408e2b57");
+		Orianna.setRiotAPIKey("RGAPI-359e66df-d65c-4d6f-ba0b-16a34dad8792");
         Orianna.setDefaultRegion(Region.KOREA);
         Summoner summoner = Orianna.summonerNamed("곧휴가간다").get();
         // A MatchHistory is a lazy list, meaning it's elements only get loaded as-needed.
