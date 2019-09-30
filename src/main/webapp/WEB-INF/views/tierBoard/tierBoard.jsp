@@ -62,6 +62,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
+				<button type="button" class="btn btn-danger">듀오 신청하기</button>&nbsp;&nbsp;
 				<button type="button" class="btn btn-secondary" id="cancel2" data-dismiss="modal" onclick="cancel2();">닫기</button>
 			</div>
 		</div>

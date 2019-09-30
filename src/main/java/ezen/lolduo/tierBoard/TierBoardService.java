@@ -13,5 +13,7 @@ public interface TierBoardService {
 
 	void updateNameTier(Map<String, Object> map) throws Exception;
 
+	Map<String, Object> getMemData(Map<String, Object> map) throws Exception;
+
 
 }
