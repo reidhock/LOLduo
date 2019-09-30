@@ -39,4 +39,21 @@
 	]]>
 </update>
 
+<select id="getMemData" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT
+			MEM_NUM,
+			MEM_ID,
+			MEM_NAME,
+			MEM_EMAIL,
+			MEM_SUMMONER,
+			MEM_POSITION,
+			MEM_TIME,
+			MEM_TIER,
+		FROM
+			MEMBER
+		WHERE MEM_LOLID = #{MEM_LOLID}
+	]]>
+</select>
+
 </mapper>

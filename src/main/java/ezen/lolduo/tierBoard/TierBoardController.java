@@ -44,7 +44,7 @@ public class TierBoardController {
 	@RequestMapping(value="/Refresh")
 	public @ResponseBody Map<String, Object> refresh(HttpServletRequest request, CommandMap commandMap)throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
-		Orianna.setRiotAPIKey("RGAPI-a16b07af-51cc-4b35-9518-711a408e2b57");
+		Orianna.setRiotAPIKey("RGAPI-09562dcb-34a8-44bb-bdf2-eff6f68f6696");
         Orianna.setDefaultRegion(Region.KOREA);
         
         //ajax를 통해 받아온 MEM_NUM으로 encryptedID 받아옴
@@ -67,6 +67,7 @@ public class TierBoardController {
 		commandMap.put("MEM_TIER", tier);
 		
 		tierBoardService.updateNameTier(commandMap.getMap());
+		map = tierBoardService.getMemData(commandMap.getMap());
 		
 		return map;
 	}
