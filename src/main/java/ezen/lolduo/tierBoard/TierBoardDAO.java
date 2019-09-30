@@ -13,7 +13,7 @@ public class TierBoardDAO extends AbstractDAO{
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return (List<Map<String, Object>>)selectList("tierBoard.selectBoardList", map);
+		return (List<Map<String, Object>>) selectList("tierBoard.selectBoardList", map);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -25,3 +25,4 @@ public class TierBoardDAO extends AbstractDAO{
 		update("tierBoard.updateNameTier", map);
 	}
 }
+	

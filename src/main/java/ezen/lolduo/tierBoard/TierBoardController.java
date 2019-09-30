@@ -32,9 +32,9 @@ public class TierBoardController {
 	private TierBoardService tierBoardService;
 	
 	@RequestMapping(value="/tierBoard")
-	public ModelAndView openTierBoard(Map<String, Object> commandMap) throws Exception {
+	public ModelAndView openTierBoard(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("tierBoard/tierBoard");
-		List<Map<String,Object>> list = tierBoardService.selectBoardList(commandMap); 
+		List<Map<String,Object>> list = tierBoardService.selectBoardList(commandMap.getMap()); 
 		mv.addObject("list", list);
 		
 		return mv;
