@@ -1,4 +1,6 @@
 package ezen.lolduo.tierBoard;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +20,9 @@ import com.merakianalytics.orianna.Orianna;
 import com.merakianalytics.orianna.types.common.Queue;
 import com.merakianalytics.orianna.types.common.Region;
 import com.merakianalytics.orianna.types.core.league.LeagueEntry;
+import com.merakianalytics.orianna.types.core.match.Match;
+import com.merakianalytics.orianna.types.core.match.MatchHistory;
+import com.merakianalytics.orianna.types.core.match.Participant;
 import com.merakianalytics.orianna.types.core.summoner.Summoner;
 import com.merakianalytics.orianna.types.core.summoner.Summoner.Builder;
 
@@ -44,7 +49,7 @@ public class TierBoardController {
 	@RequestMapping(value="/Refresh")
 	public @ResponseBody Map<String, Object> refresh(HttpServletRequest request, CommandMap commandMap)throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
-		Orianna.setRiotAPIKey("RGAPI-a16b07af-51cc-4b35-9518-711a408e2b57");
+		Orianna.setRiotAPIKey("RGAPI-359e66df-d65c-4d6f-ba0b-16a34dad8792");
         Orianna.setDefaultRegion(Region.KOREA);
         
         //ajax를 통해 받아온 MEM_NUM으로 encryptedID 받아옴
@@ -54,11 +59,11 @@ public class TierBoardController {
 		
 		//받아온 EncryptedID로 롤 api에 요청해서 summoner 객체 생성
 		Builder summonerBuilder = Orianna.summonerWithId(summId);
-		Summoner summoner2 = summonerBuilder.get();
-		LeagueEntry leagueEntry = summoner2.getLeaguePosition(Queue.RANKED_SOLO);
+		Summoner summoner = summonerBuilder.get();
+		LeagueEntry leagueEntry = summoner.getLeaguePosition(Queue.RANKED_SOLO);
 		
 		String tier = leagueEntry.getTier().toString() + "_" + leagueEntry.getDivision().toString();
-		String summName = summoner2.getName();
+		String summName = summoner.getName();
 //		System.out.println("Summoners Tier:::::::::" + tier);
 //		System.out.println("Summoners Name:::::::::" + summName);
 		
@@ -67,6 +72,39 @@ public class TierBoardController {
 		commandMap.put("MEM_TIER", tier);
 		
 		tierBoardService.updateNameTier(commandMap.getMap());
+		commandMap.put("MEM_LOLID", summId);
+		map = tierBoardService.getMemData(commandMap.getMap());
+		
+		//서머너의 최근 전적 객체
+		MatchHistory matchHistory = MatchHistory.forSummoner(summoner).get();
+		
+		List<Map<String, Object>> matchList = new ArrayList<Map<String, Object>>();
+		
+		for(int i=0; i<5; i++) {
+			Map<String, Object> matchMap = new HashMap<String, Object>();
+			Boolean isWin = null;
+
+			Match match = matchHistory.get(i);
+			Participant pa = match.getParticipants().get(0);
+			//레드팀 == 200 ,블루 == 100
+			//승 패 확인
+			if(pa.getCoreData().getTeam() == 100) {
+				isWin = match.getBlueTeam().isWinner(); 
+			}else {
+				isWin = match.getBlueTeam().isWinner();
+			}
+			String kda = pa.getCoreData().getStats().getKills() +"/" + pa.getCoreData().getStats().getDeaths() +"/" + pa.getCoreData().getStats().getAssists();
+			String champ = pa.getChampion().getName();
+			
+			matchMap.put("champ", champ);
+			matchMap.put("isWin", isWin);
+			matchMap.put("kda", kda);
+			matchList.add(matchMap);
+		}
+		for(Map q : matchList) {
+			System.out.println("kda 출력 ::::::"+ q.get("kda"));
+		}
+		map.put("matchList", matchList);
 		
 		return map;
 	}

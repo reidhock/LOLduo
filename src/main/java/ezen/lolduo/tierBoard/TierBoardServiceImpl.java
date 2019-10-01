@@ -28,5 +28,8 @@ public class TierBoardServiceImpl implements TierBoardService{
 	public void updateNameTier(Map<String, Object> map) throws Exception{
 		tierBoardDAO.updateNameTier(map);
 	}
-
+	
+	public Map<String, Object> getMemData(Map<String, Object> map) throws Exception{
+		return tierBoardDAO.getMemData(map);
+	}
 }

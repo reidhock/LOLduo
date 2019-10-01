@@ -24,5 +24,11 @@ public class TierBoardDAO extends AbstractDAO{
 	public void updateNameTier(Map<String, Object> map) {
 		update("tierBoard.updateNameTier", map);
 	}
+
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> getMemData(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return (Map<String, Object>) selectOne("tierBoard.getMemData", map);
+	}
 }
 	

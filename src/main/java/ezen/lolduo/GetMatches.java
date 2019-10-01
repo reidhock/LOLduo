@@ -21,7 +21,7 @@ public class GetMatches {
 //        final Summoner summoner = Summoner.named("협곡성").withRegion(Region.KOREA).get();
 		Orianna.setRiotAPIKey("RGAPI-359e66df-d65c-4d6f-ba0b-16a34dad8792");
         Orianna.setDefaultRegion(Region.KOREA);
-        Summoner summoner = Orianna.summonerNamed("곧휴가간다").get();
+        Summoner summoner = Orianna.summonerNamed("협곡성").get();
         // A MatchHistory is a lazy list, meaning it's elements only get loaded as-needed.
 
         final MatchHistory matchHistory = MatchHistory.forSummoner(summoner).get();
@@ -61,16 +61,23 @@ public class GetMatches {
 
         System.out.println("\n");
 
-        final Match match = matchHistory.get(0);
+        final Match match = matchHistory.get(3);
         System.out.println("Match ID: " + match.getId());
-
+        System.out.println("match data::::::"+ match.getCoreData());
+        System.out.println("match data2:::::" + match.getRedTeam().isWinner());
+        System.out.println(match.getParticipants().get(0).getCoreData().getTeam());
+        System.out.println(match.getParticipants().get(0).getTeam());
+        
+        
         final Participant participant = match.getParticipants().find(summoner);
         System.out.println("\nSince the match was created from a matchref, we only know one participant:");
         System.out.println(participant.getSummoner().getName() + " played " + participant.getChampion().getName());
-
+        
         System.out.println("\nNow pull the full match data by iterating over all the participants:");
         for(final Participant p : match.getParticipants()) {
             System.out.println(p.getSummoner().getName() + " played " + p.getChampion().getName());
+            System.out.println(p.getCoreData());
+            System.out.println("KDA::::::" + p.getCoreData().getStats().getKills() +"/" + p.getCoreData().getStats().getDeaths() +"/" + p.getCoreData().getStats().getAssists());
         }
 
         System.out.println("\nIterate over all the participants again and note that the data is not repulled:");
