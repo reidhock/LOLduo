@@ -1,6 +1,6 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -130,7 +130,7 @@ $(document).ready(function() {
 		<div class="collapse navbar-collapse" id="navbarColor01" style=display:none;>
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
-					<a class="nav-link" href="/lolduo/tierBoard">티어 게시판<span class="sr-only">(current)</span></a>
+					<a class="nav-link" href="/lolduo/tierBoard?MEM_TIER=all">티어 게시판<span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">Features</a>
@@ -164,7 +164,7 @@ $(document).ready(function() {
     				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" onclick="openMenu();"><%=(String)session.getAttribute("MEM_ID")%>님</a>
     				<div class="dropdown-menu mymenu" id="mymenu" x-placement="bottom-start" style="display:none;position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
       					<a class="dropdown-item" href="#">마이페이지</a>
-      					<a class="dropdown-item" href="/lolduo/messageList">메세지함</a>
+      					<a class="dropdown-item" href="/lolduo/messageList?MEM_ID=<%=(String)session.getAttribute("MEM_ID")%>">메세지함</a>
       					<a class="dropdown-item" href="/lolduo/logout">로그아웃</a>
 					</div>
   				</li>

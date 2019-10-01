@@ -54,7 +54,7 @@
 	<![CDATA[
     	SELECT count(MEM_SUMMONER) 
     	FROM MEMBER 
-    	WHERE mem_id=#{MEM_SUMMONER}
+    	WHERE mem_summoner=#{MEM_SUMMONER}
 	]]>
 	</select>
 	<update id="updateVerify" parameterType="hashmap"> 

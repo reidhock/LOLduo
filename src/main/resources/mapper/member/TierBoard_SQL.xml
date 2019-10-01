@@ -15,7 +15,45 @@
 			MEM_TIME
 		FROM
 			MEMBER
+		WHERE
+			MEM_NUM >= 0
 	]]>
+	<if test='MEM_TIER.equals("iron")'>
+		<![CDATA[	
+			AND
+				MEM_TIER like 'IRON%'
+		]]>
+	</if>
+	<if test='MEM_TIER.equals("bronze")'>
+		<![CDATA[	
+			AND
+				MEM_TIER like 'BRONZE%'
+		]]>
+	</if>
+	<if test="MEM_TIER.equals('silver')">
+		<![CDATA[
+			AND
+				MEM_TIER like 'SILVER%'
+		]]>
+	</if>
+	<if test="MEM_TIER.equals('gold')">
+		<![CDATA[
+			AND
+				MEM_TIER like 'GOLD%'
+		]]>
+	</if>
+	<if test="MEM_TIER.equals('platinum')">
+		<![CDATA[
+			AND
+				MEM_TIER like 'PLATINUM%'
+		]]>
+	</if>
+	<if test="MEM_TIER.equals('diamond')">
+		<![CDATA[
+			AND
+				MEM_TIER like 'DIAMOND%'
+		]]>
+	</if>	
 </select>
 
 <select id="selectId" parameterType="hashmap" resultType="hashmap">
@@ -49,10 +87,11 @@
 			MEM_SUMMONER,
 			MEM_POSITION,
 			MEM_TIME,
-			MEM_TIER,
+			MEM_TIER
 		FROM
 			MEMBER
-		WHERE MEM_LOLID = #{MEM_LOLID}
+		WHERE 
+			MEM_LOLID = #{MEM_LOLID}
 	]]>
 </select>
 
