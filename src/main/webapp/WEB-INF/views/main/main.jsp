@@ -11,9 +11,10 @@
 </style>
 </head>
 <body>
-<div style=width:70%;margin:auto;text-align:center;>
-	<img alt="" src="/lolduo/images/main.PNG" style=width:600px;>
+<div style=width:70%;margin:auto;;>
+	<img alt="" src="/lolduo/images/duo.png" style=width:800px;>
 </div>
+<br><br><br>
 <div style=width:100%;margin:auto;text-align:center;>
 	<div style=display:inline-block;width:14%;>
 		<a href="/lolduo/tierBoard?MEM_TIER=iron"><img alt="" src="/lolduo/images/iron.png"></a>
