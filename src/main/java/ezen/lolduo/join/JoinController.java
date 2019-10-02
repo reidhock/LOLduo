@@ -40,9 +40,14 @@ public class JoinController {
         String lolId = summoner.getId();
         	System.out.println("lolID="+lolId);
         final LeagueEntry summonerEntry = summoner.getLeaguePosition(Queue.RANKED_SOLO);
-        String tier = (summonerEntry.getTier().toString())+"_"+(summonerEntry.getDivision().toString());
-        commandMap.put("MEM_LOLID", lolId);
-        commandMap.put("MEM_TIER", tier);
+        String tier;
+        	if(summonerEntry == null) {
+        		tier = "Unranked";
+        	}else {
+        		tier = String.valueOf((summonerEntry.getTier()))+"_"+String.valueOf((summonerEntry.getDivision()));
+        	}
+        	commandMap.put("MEM_LOLID", lolId);
+        	commandMap.put("MEM_TIER", tier);
 		
         joinService.insertUserData(commandMap.getMap());
 		ModelAndView mv = new ModelAndView("join/signUpComplete");

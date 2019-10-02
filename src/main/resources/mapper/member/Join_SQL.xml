@@ -36,8 +36,8 @@
         #{MEM_POSITION},
         #{MEM_TIME},
         SYSDATE,
-        	#{MEM_TIER},
-        	#{MEM_LOLID}
+        #{MEM_TIER},
+        #{MEM_LOLID}
 	)
 	]]>
 	</insert>
