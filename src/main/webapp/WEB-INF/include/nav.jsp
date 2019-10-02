@@ -133,13 +133,10 @@ $(document).ready(function() {
 					<a class="nav-link" href="/lolduo/tierBoard">티어 게시판<span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Features</a>
+					<a class="nav-link" href="#">통계</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Pricing</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">About</a>
+					<a class="nav-link" href="#">자유게시판</a>
 				</li>
 			</ul>
 			<div style=text-align:right;display:inline;>
